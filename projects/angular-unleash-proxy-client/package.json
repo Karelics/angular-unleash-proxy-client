@@ -9,5 +9,22 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "description": "Angular wrapper for [unleash-proxy-client](https://github.com/Unleash/unleash-proxy-client-js).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karelics/angular-unleash-proxy-client.git"
+  },
+  "keywords": [
+    "angular",
+    "unleash",
+    "unleash-proxy-client"
+  ],
+  "author": "Karelics Oy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Karelics/angular-unleash-proxy-client/issues"
+  },
+  "homepage": "https://github.com/Karelics/angular-unleash-proxy-client#readme"
 }

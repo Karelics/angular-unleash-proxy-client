@@ -1,6 +1,6 @@
 {
   "name": "@karelics/angular-unleash-proxy-client",
-  "version": "0.0.0",
+  "version": "15.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -45,5 +45,22 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.1.0",
     "typescript": "~4.9.4"
-  }
+  },
+  "description": "Angular wrapper for [unleash-proxy-client](https://github.com/Unleash/unleash-proxy-client-js).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karelics/angular-unleash-proxy-client.git"
+  },
+  "keywords": [
+    "angular",
+    "unleash",
+    "unleash-proxy-client"
+  ],
+  "author": "Karelics Oy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Karelics/angular-unleash-proxy-client/issues"
+  },
+  "homepage": "https://github.com/Karelics/angular-unleash-proxy-client#readme"
 }

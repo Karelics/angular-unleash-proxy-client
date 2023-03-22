@@ -1,3 +1,6 @@
+[![License: MIT][license-mit-badge]][license-mit]
+[![npm version][npm-version-badge]][npm]
+
 # @karelics/angular-unleash-proxy-client
 
 Angular wrapper for [unleash-proxy-client](https://github.com/Unleash/unleash-proxy-client-js).
