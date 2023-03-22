@@ -1,5 +1,6 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, TemplateRef } from '@angular/core';
 import { FeatureDirective } from './feature.directive';
+import { NgIfContext } from '@angular/common';
 
 @Directive({
   selector: '[featureEnabled]',
@@ -10,7 +11,10 @@ export class FeatureEnabledDirective extends FeatureDirective {
     this.setToggleName(val);
   }
 
-  protected stateValue(): boolean {
-    return this.unleashService.isEnabled(this.getToggleName());
+  @Input('featureEnabledElse')
+  set else(templateRef: TemplateRef<NgIfContext<boolean>> | null) {
+    super.ngIfElse = templateRef;
   }
+
+  protected toggleState$ = this.unleashService.isEnabled$.bind(this.unleashService);
 }

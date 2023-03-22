@@ -1,4 +1,8 @@
-<div *featureEnabled="TOGGLE_NAME">FEATURE_A ENABLED</div>
+<div *featureEnabled="TOGGLE_NAME; else elseTmpl">FEATURE_A ENABLED</div>
+
+<ng-template #elseTmpl>
+  FEATURE_A DISABLED
+</ng-template>
 
 <ul>
   <li>

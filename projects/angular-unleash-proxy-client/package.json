@@ -1,6 +1,6 @@
 {
   "name": "@karelics/angular-unleash-proxy-client",
-  "version": "15.0.0",
+  "version": "15.1.0",
   "peerDependencies": {
     "@angular/common": ">=15.0.0",
     "@angular/core": ">=15.0.0",

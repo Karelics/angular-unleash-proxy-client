@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { EVENTS, IConfig as UnleashConfig, UnleashClient } from 'unleash-proxy-client';
 import { UNLEASH_CONFIG } from './unleash.initializer';
-import { fromEvent, shareReplay } from 'rxjs';
+import { distinctUntilChanged, fromEvent, map, Observable, shareReplay, startWith } from 'rxjs';
 import { ImpressionEvent } from './events/impression';
 
 @Injectable({
@@ -22,5 +22,23 @@ export class UnleashService {
 
   isEnabled(featureFlag: string): boolean {
     return this.unleash.isEnabled(featureFlag);
+  }
+
+  isDisabled(featureFlag: string): boolean {
+    return !this.isEnabled(featureFlag);
+  }
+
+  isEnabled$(featureFlag: string): Observable<boolean> {
+    return this.update$.pipe(
+      startWith(null),
+      map(() => this.isEnabled(featureFlag)),
+      distinctUntilChanged(),
+    );
+  }
+
+  isDisabled$(featureFlag: string): Observable<boolean> {
+    return this.isEnabled$(featureFlag).pipe(
+      map((state) => !state),
+    );
   }
 }

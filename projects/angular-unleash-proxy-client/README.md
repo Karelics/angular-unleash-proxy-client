@@ -42,9 +42,14 @@ providers: [
 
 #### Directive
 
+You can define **else** template similar to ***ngIf** directive.
+
 ```html
-<div *featureEnabled="'feature_name'"></div>
-<div *featureDisabled="'feature_name'"></div>
+<div *featureEnabled="'feature_name'; else disabledTmpl">enabled</div>
+
+<ng-template #disabledTmpl>disabled</ng-template>
+
+<div *featureDisabled="'feature_name'">disabled</div>
 ```
 
 #### Guard
@@ -76,7 +81,13 @@ const routes: Routes = [
 
 #### Service
 
-**UnleashService** wraps only original service events into observables and **isEnabled** method. Other unleash service features can be accessed with **unleash** property.
+**UnleashService** has the following logic around original unleash proxy client service:
+
+- wraps original service events into observables
+- provides **isEnabled/isDisabled** methods to check current toggle state
+- provides **isEnabled$/isDisabled$** methods returning observable to be informed about toggle state changes
+
+Other unleash service features can be accessed with **unleash** property.
 
 ```typescript
 import { UnleashService } from '@karelics/angular-unleash-proxy-client';
@@ -85,10 +96,15 @@ import { UnleashService } from '@karelics/angular-unleash-proxy-client';
 export class MyService {
   constructor(
     private unleashService: UnleashService,
-  ) { }
+  ) {
+    // don't forget to unsubscribe
+    this.unleashService.isEnabled$('feature_name').pipe(
+      tap(...),
+    ).subscribe();
+  }
   
   methodA(): void {
-    if (this.unleashService.isEnabled('feature_name')) {
+    if (this.unleashService.isDisabled('feature_name')) {
       ...
     }
   }
@@ -97,4 +113,21 @@ export class MyService {
     this.unleashService.unleash.updateContext(...);
   }
 }
+```
+
+#### Updates
+
+Feature toggles state is requested from unleash proxy each time on page load, but by default unleash proxy client every 30 seconds requests updates from unleash proxy to perform runtime changes.
+If requesting state on page load if enough in your case, you can disable updates using unleash configuration:
+
+```typescript
+import { provideUnleashProxy } from '@karelics/angular-unleash-proxy-client';
+
+providers: [
+  provideUnleashProxy({
+    ... // other options
+    disableRefresh: true,
+    disableMetrics: true,
+  }),
+]
 ```

@@ -1,34 +1,35 @@
-import { Directive, inject, OnInit } from '@angular/core';
+import { Directive, inject, OnDestroy, OnInit } from '@angular/core';
 import { UnleashService } from '../unleash.service';
 import { NgIf } from '@angular/common';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Observable, ReplaySubject, Subject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Directive()
-export abstract class FeatureDirective extends NgIf<boolean> implements OnInit {
+export abstract class FeatureDirective extends NgIf<boolean> implements OnInit, OnDestroy {
   protected readonly unleashService = inject(UnleashService);
 
-  private _toggleName: string | undefined;
-
+  private readonly toggleNameSubject = new ReplaySubject<string>(1);
   private readonly destroySubject = new Subject<void>();
 
+  protected abstract toggleState$: (toggleName: string) => Observable<boolean>;
+
   ngOnInit(): void {
-      this.unleashService.update$.pipe(
-        tap(() => this.update()),
-        takeUntil(this.destroySubject),
-      ).subscribe();
+    this.toggleNameSubject.pipe(
+      switchMap((toggleName) => this.toggleState$(toggleName)),
+      tap((state) => this.update(state)),
+      takeUntil(this.destroySubject),
+    ).subscribe();
   }
 
   protected setToggleName(val: string): void {
-    this._toggleName = val;
+    this.toggleNameSubject.next(val);
   }
 
-  protected getToggleName(): string {
-    return this._toggleName ?? '';
+  protected update(state: boolean): void {
+    this.ngIf = state;
   }
 
-  protected update(): void {
-    this.ngIf = this.stateValue();
+  ngOnDestroy(): void {
+    this.destroySubject.next();
+    this.destroySubject.complete();
   }
-
-  protected abstract stateValue(): boolean;
 }
