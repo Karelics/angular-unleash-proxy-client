@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  unleash:
+    container_name: unleash
+    image: unleashorg/unleash-proxy
+    restart: always
+    ports:
+      - "3030:3000"
+    environment:
+      UNLEASH_PROXY_SECRETS: _
+      UNLEASH_URL: _
+      UNLEASH_INSTANCE_ID: _
+      UNLEASH_APP_NAME: _
+      UNLEASH_API_TOKEN: _
