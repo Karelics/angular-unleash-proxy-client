@@ -8,8 +8,8 @@ services:
     ports:
       - "3030:3000"
     environment:
-      UNLEASH_PROXY_SECRETS: _
-      UNLEASH_URL: _
-      UNLEASH_INSTANCE_ID: _
-      UNLEASH_APP_NAME: _
+      UNLEASH_URL: <API URL from GitLab>
+      UNLEASH_INSTANCE_ID: <Instance ID from GitLab>
+      UNLEASH_APP_NAME: staging
+      UNLEASH_PROXY_SECRETS: MY_UNLEASH_PROXY_SECRETS
       UNLEASH_API_TOKEN: _
