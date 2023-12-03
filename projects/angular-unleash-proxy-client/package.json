@@ -1,13 +1,13 @@
 {
   "name": "@karelics/angular-unleash-proxy-client",
-  "version": "15.1.0",
+  "version": "17.0.0",
   "peerDependencies": {
-    "@angular/common": ">=15.0.0",
-    "@angular/core": ">=15.0.0",
-    "unleash-proxy-client": "^2.4.3"
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "unleash-proxy-client": ">=3.0.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.6.2"
   },
   "sideEffects": false,
   "description": "Angular wrapper for [unleash-proxy-client](https://github.com/Unleash/unleash-proxy-client-js).",
