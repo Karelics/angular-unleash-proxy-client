@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TOGGLE_NAME } from './example-params';
+import { TOGGLE_NAMES } from './example-params';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import { TOGGLE_NAME } from './example-params';
   styles: ['']
 })
 export class AppComponent {
-  TOGGLE_NAME = TOGGLE_NAME;
+  TOGGLE_NAMES = TOGGLE_NAMES;
 }

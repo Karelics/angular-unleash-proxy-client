@@ -1,0 +1,7 @@
+{
+  "toggles": [
+    { "name": "featureA", "enabled": true },
+    { "name": "featureB", "enabled": false },
+    { "name": "featureC", "enabled": true }
+  ]
+}
