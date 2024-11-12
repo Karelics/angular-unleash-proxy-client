@@ -1,19 +1,29 @@
-<div *featureEnabled="TOGGLE_NAME; else elseTmpl">FEATURE_A ENABLED</div>
+<h1>Feature Flag Examples</h1>
 
-<ng-template #elseTmpl>
-  FEATURE_A DISABLED
-</ng-template>
+<!-- Examples component with all directive demos -->
+<app-examples></app-examples>
 
+<h2>Navigation Examples</h2>
 <ul>
   <li>
-    <a [routerLink]="['a']">ROUTE_A</a>
+    <a [routerLink]="['single-enabled']">Single Enabled Flag</a>
   </li>
   <li>
-    <a [routerLink]="['b']">ROUTE_B</a>
+    <a [routerLink]="['single-disabled']">Single Disabled Flag</a>
   </li>
   <li>
-    <a [routerLink]="['c']">ROUTE_C</a>
+    <a [routerLink]="['multi-or']">Multiple Flags OR</a>
+  </li>
+  <li>
+    <a [routerLink]="['multi-and']">Multiple Flags AND</a>
+  </li>
+  <li>
+    <a [routerLink]="['multi-redirect']">Multiple Flags with Redirect</a>
+  </li>
+  <li>
+    <a [routerLink]="['multi-disabled-or']">Multiple Disabled Flags OR</a>
   </li>
 </ul>
 
+<!-- Router outlet for guard examples -->
 <router-outlet></router-outlet>
