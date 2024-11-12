@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExamplesComponent } from './components/examples.component';
 import { FeatureDisabledDirective, FeatureEnabledDirective, provideUnleashProxy } from 'angular-unleash-proxy-client';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { EXAMPLE_CONFIG } from './example-params';
 
 @NgModule({
@@ -15,12 +15,12 @@ import { EXAMPLE_CONFIG } from './example-params';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FeatureEnabledDirective,
     FeatureDisabledDirective
   ],
   providers: [
-    provideUnleashProxy(EXAMPLE_CONFIG)
+    provideUnleashProxy(EXAMPLE_CONFIG),
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent]
 })
