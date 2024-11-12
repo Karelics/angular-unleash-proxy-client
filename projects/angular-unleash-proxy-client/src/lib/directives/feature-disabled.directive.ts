@@ -26,14 +26,13 @@ export class FeatureDisabledDirective extends FeatureDirective {
 
   protected toggleState$ = (toggleNames: string[]) => {
     return combineLatest(
-      toggleNames.map(name => this.unleashService.isEnabled$(name))
+      toggleNames.map(name => this.unleashService.isDisabled$(name))
     ).pipe(
-      map(states => {
-        const enabledState = this._operator === 'and'
+      map(states =>
+        this._operator === 'and'
           ? states.every(state => state)
-          : states.some(state => state);
-        return !enabledState;
-      })
+          : states.some(state => state)
+      ),
     );
   };
 }

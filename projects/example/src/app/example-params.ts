@@ -4,6 +4,7 @@ export const TOGGLE_NAMES = {
   FEATURE_A: 'featureA',  // let's assume this is enabled
   FEATURE_B: 'featureB',  // let's assume this is disabled
   FEATURE_C: 'featureC',  // let's assume this is enabled
+  FEATURE_D: 'featureD',  // let's assume this is disabled
 } as const;
 
 export const EXAMPLE_CONFIG: IConfig = {

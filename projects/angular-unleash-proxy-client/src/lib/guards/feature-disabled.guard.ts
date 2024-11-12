@@ -15,7 +15,7 @@ export function featureDisabled(
     const unleashService = inject(UnleashService);
 
     const effectiveToggleNames = Array.isArray(toggleNames) ? toggleNames : [toggleNames];
-    const effectiveOperator = Array.isArray(toggleNames) ? (operatorOrRedirectUrl ?? 'and') as JoinOperator : 'and';
+    const effectiveOperator = Array.isArray(toggleNames) ? (operatorOrRedirectUrl ?? 'or') as JoinOperator : 'or';
     const effectiveRedirectUrl = Array.isArray(toggleNames) ? redirectUrl : operatorOrRedirectUrl as (string | UrlTree);
 
     const states = effectiveToggleNames.map(toggle => unleashService.isDisabled(toggle));

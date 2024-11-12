@@ -26,11 +26,13 @@ import { TOGGLE_NAMES } from '../example-params';
     </div>
 
     <!-- Multiple flags with OR and else template -->
-    <div *featureEnabled="[TOGGLE_NAMES.FEATURE_B, TOGGLE_NAMES.FEATURE_C]; else notEnabled">
-      Either Feature B OR Feature C is enabled
+    <div *featureEnabled="[TOGGLE_NAMES.FEATURE_B, TOGGLE_NAMES.FEATURE_D]; else notEnabled">
+      Either Feature B OR Feature D is enabled
     </div>
     <ng-template #notEnabled>
-      Neither Feature B nor Feature C is enabled
+      <div>
+        Both Feature B AND Feature D are not enabled
+      </div>
     </ng-template>
 
     <!-- Multiple flags with AND and else template -->
@@ -38,7 +40,9 @@ import { TOGGLE_NAMES } from '../example-params';
       Both Feature A AND Feature B are enabled
     </div>
     <ng-template #notBothEnabled>
-      Not all required features are enabled
+      <div>
+        Not all required features are enabled (A, B)
+      </div>
     </ng-template>
 
     <!-- Multiple flags disabled with OR -->
@@ -47,9 +51,19 @@ import { TOGGLE_NAMES } from '../example-params';
     </div>
 
     <!-- Multiple flags disabled with AND -->
-    <div *featureDisabled="[TOGGLE_NAMES.FEATURE_B, TOGGLE_NAMES.FEATURE_C] operator 'and'">
-      Both Feature B AND Feature C are disabled
+    <div *featureDisabled="[TOGGLE_NAMES.FEATURE_B, TOGGLE_NAMES.FEATURE_D] operator 'and'">
+      Both Feature B AND Feature D are disabled
     </div>
+
+    <!-- Multiple flags disabled with AND and else template -->
+    <div *featureDisabled="[TOGGLE_NAMES.FEATURE_C, TOGGLE_NAMES.FEATURE_B] operator 'and'; else notBothDisabled">
+      Both Feature C AND Feature B are disabled
+    </div>
+    <ng-template #notBothDisabled>
+      <div>
+        Not all required features are disabled (C, B)
+      </div>
+    </ng-template>
   `
 })
 export class ExamplesComponent {

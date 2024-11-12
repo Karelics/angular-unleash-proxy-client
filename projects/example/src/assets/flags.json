@@ -2,6 +2,7 @@
   "toggles": [
     { "name": "featureA", "enabled": true },
     { "name": "featureB", "enabled": false },
-    { "name": "featureC", "enabled": true }
+    { "name": "featureC", "enabled": true },
+    { "name": "featureD", "enabled": false }
   ]
 }

@@ -32,7 +32,7 @@ export class FeatureEnabledDirective extends FeatureDirective {
         this._operator === 'and'
           ? states.every(state => state)
           : states.some(state => state)
-      )
+      ),
     );
   };
 }
