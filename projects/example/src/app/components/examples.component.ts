@@ -64,7 +64,8 @@ import { TOGGLE_NAMES } from '../example-params';
         Not all required features are disabled (C, B)
       </div>
     </ng-template>
-  `
+  `,
+  standalone: false
 })
 export class ExamplesComponent {
   readonly TOGGLE_NAMES = TOGGLE_NAMES;
